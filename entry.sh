@@ -1,8 +1,10 @@
 #!/bin/sh
+set -e
 
-# Substitute env vars in openclaw.json
-cp /root/.openclaw/openclaw.json /root/.openclaw/openclaw.json.template
-envsubst < /root/.openclaw/openclaw.json.template > /root/.openclaw/openclaw.json
+# Inject env vars into config
+if [ -n "$FEISHU_APP_SECRET" ]; then
+  sed -i "s|\$FEISHU_APP_SECRET|$FEISHU_APP_SECRET|g" /root/.openclaw/openclaw.json
+fi
 
-# Start gateway
+echo "=== Starting OpenClaw Gateway ==="
 exec node /usr/local/lib/node_modules/openclaw/dist/index.js gateway --port 8080
