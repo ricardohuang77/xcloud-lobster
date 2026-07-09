@@ -15,7 +15,7 @@
             "mode": "token"
         },
         "port": 8080,
-        "bind": "lan"
+        "bind": "auto"
     },
     "session": {
         "dmScope": "per-channel-peer"
