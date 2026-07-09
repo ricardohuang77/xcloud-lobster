@@ -52,11 +52,6 @@
         }
     },
     "auth": {
-        "profiles": {
-            "openrouter:manual": {
-                "provider": "openrouter",
-                "mode": "token"
-            }
-        }
+        "profiles": {}
     }
 }
