@@ -1,42 +1,15 @@
 {
     "agents": {
         "defaults": {
-            "thinkingDefault": "off",
-            "workspace": "/root/.openclaw/workspace",
             "model": {
                 "primary": "google/gemini-2.5-flash"
-            },
-            "instructions": "You are Marvis Cloud Lobster, an AI assistant running on Feishu. Be concise, professional, no emojis. Do not fabricate files or data. Use Markdown tables for comparisons. You can chat, search web, read/write Feishu docs. You cannot do system-level operations or App automation."
+            }
         }
     },
     "gateway": {
         "mode": "local",
-        "auth": {
-            "mode": "token"
-        },
         "port": 8080,
-        "bind": "auto"
-    },
-    "session": {
-        "dmScope": "per-channel-peer"
-    },
-    "tools": {
-        "profile": "coding",
-        "fs": {
-            "workspaceOnly": true
-        }
-    },
-    "skills": {
-        "install": {
-            "nodeManager": "npm"
-        }
-    },
-    "plugins": {
-        "entries": {
-            "feishu": {
-                "enabled": true
-            }
-        }
+        "bind": "0.0.0.0"
     },
     "channels": {
         "feishu": {
@@ -44,14 +17,7 @@
             "appId": "cli_aac76a9dc3389bd3",
             "appSecret": "$FEISHU_APP_SECRET",
             "domain": "feishu",
-            "streaming": false,
-            "connectionMode": "websocket",
-            "groupPolicy": "open",
-            "dmPolicy": "open",
-            "allowFrom": ["*"]
+            "streaming": false
         }
-    },
-    "auth": {
-        "profiles": {}
     }
 }
