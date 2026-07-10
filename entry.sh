@@ -1,9 +1,8 @@
-#!/bin/sh
-set -e
+﻿#!/bin/sh
 
-if [ -n "$FEISHU_APP_SECRET" ]; then
-  sed -i "s|\$FEISHU_APP_SECRET|$FEISHU_APP_SECRET|g" /root/.openclaw/openclaw.json
-fi
+# Substitute env vars in openclaw.json
+cp /root/.openclaw/openclaw.json /root/.openclaw/openclaw.json.template
+envsubst < /root/.openclaw/openclaw.json.template > /root/.openclaw/openclaw.json
 
-PORT=${PORT:-8080}
-exec openclaw gateway --port "$PORT"
+# Start gateway
+exec node /usr/local/lib/node_modules/openclaw/dist/index.js gateway --port 8080

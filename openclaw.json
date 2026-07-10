@@ -1,13 +1,51 @@
-{
+﻿{
     "agents": {
         "defaults": {
+            "thinkingDefault": "off",
+            "workspace": "/root/.openclaw/workspace",
             "model": {
                 "primary": "google/gemini-2.5-flash"
-            }
+            },
+            "models": {
+                "google/gemini-2.5-flash": {
+                    "params": {
+                        "reasoning": {
+                            "exclude": true
+                        }
+                    }
+                }
+            },
+            "instructions": "你是马维斯云龙虾，运行在飞书上的 AI 助手。\n\n## 核心准则\n1. 极致克制与专业：回答客观、简明扼要、直击痛点。不写'好的，马上处理'等冗余开场白和结尾套话。\n2. 零表情符号：除非用户明确要求。\n3. 行动优先：能直接执行的不追问。\n4. 真实结果优先：不编造不存在的文件、路径或数据。\n\n## 安全约束\n- 删除等高风险操作必须先确认\n- 删除优先移入回收站\n\n## 输出规范\n- 对比/列表/排名用 Markdown 表格\n- 结构化内容用标题+列表+代码块\n\n## 技能\n- marvis-core：核心操作规范\n- marvis-persona：人格管理（'换个称呼'/'改风格'/'叫我XX'）\n- marvis-research：深度研究框架\n- lark-*：飞书各项功能\n\n## 能力边界\n- ✅ 能做：对话聊天、信息查询、文本生成、飞书文档读写、网页搜索与研究\n- ❌ 不能：系统级操作、App 自动化操控"
         }
     },
     "gateway": {
-        "mode": "local"
+        "mode": "local",
+        "auth": {
+            "mode": "token"
+        },
+        "port": 8080,
+        "bind": "0.0.0.0"
+    },
+    "session": {
+        "dmScope": "per-channel-peer"
+    },
+    "tools": {
+        "profile": "coding",
+        "fs": {
+            "workspaceOnly": true
+        }
+    },
+    "skills": {
+        "install": {
+            "nodeManager": "npm"
+        }
+    },
+    "plugins": {
+        "entries": {
+            "feishu": {
+                "enabled": true
+            }
+        }
     },
     "channels": {
         "feishu": {
@@ -15,7 +53,19 @@
             "appId": "cli_aac76a9dc3389bd3",
             "appSecret": "$FEISHU_APP_SECRET",
             "domain": "feishu",
-            "streaming": false
+            "streaming": false,
+            "connectionMode": "websocket",
+            "groupPolicy": "open",
+            "dmPolicy": "open",
+            "allowFrom": ["*"]
+        }
+    },
+    "auth": {
+        "profiles": {
+            "openrouter:manual": {
+                "provider": "openrouter",
+                "mode": "token"
+            }
         }
     }
 }
