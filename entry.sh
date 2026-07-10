@@ -6,4 +6,4 @@ if [ -n "$FEISHU_APP_SECRET" ]; then
 fi
 
 PORT=${PORT:-8080}
-exec node /usr/local/lib/node_modules/openclaw/dist/index.js gateway --port "$PORT"
+exec node /usr/local/lib/node_modules/openclaw/dist/index.js gateway --port "$PORT" --bind auto
